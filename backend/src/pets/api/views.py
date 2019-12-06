@@ -1,13 +1,8 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import viewsets
 from pets.models import Pet
 from .serializers import PetSerializer
 
 
-class PetListView(ListAPIView):
-    queryset = Pet.objects.all()
-    serializer_class = PetSerializer
-
-
-class PetDetailView(RetrieveAPIView):
+class PetView(viewsets.ModelViewSet):
     queryset = Pet.objects.all()
     serializer_class = PetSerializer
