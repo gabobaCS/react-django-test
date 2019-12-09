@@ -10,21 +10,3 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
 }
-.card{
-    background-color: aquamarine;
-    padding: 2em;
-    text-align: center;
-    display: grid;
-    grid-template-areas: 
-    "title title"
-    "left right";
- }
- .card-title{
-     grid-area: title;
- }
- .left-info{
-     grid-area: left;
- }
- .right-info{
-     grid-area: right;
- }

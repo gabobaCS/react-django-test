@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './display.css'
+import Card from './Card.js'
+import Form from './Form.js'
 export default class Display extends Component {
 
     componentDidMount(){
@@ -12,43 +14,33 @@ export default class Display extends Component {
             })
     }
 
+    handleData(){
+        let dataList = [];
+        for (let key in this.state.data){
+            dataList.push(<Card key={this.state.data[key].id} data={this.state.data[key]} />)
+        }
+        return dataList;
+    }
 
 
 
     render() {
         if (this.state){
-            return (
+            return(
+                <React.Fragment>
                 <div className='card-container'>
-                    <div className='card'>
-                        <div className='card-title'>
-                            <h3>{this.state.data[0].nombre}</h3>
-                        </div>
-                        <div className='left-info'>
-                            <ul>
-                                <li>
-                                    Chip: {this.state.data[0].chip?'Sí':'No'}
-                                </li>
-                                <li>
-                                    Negro
-                                </li>
-                            </ul>
-                        </div>
-                        <div className='right-info'>
-                            <ul>
-                                <li>
-                                    Desparacitado
-                                </li>
-                                <li>
-                                    Negro
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    {this.handleData()}
                 </div>
-                                
+                <Form />
+                </React.Fragment>
+
             )
         }
-        return (<div></div>)
+  
+        else {
+            return (
+           <Form />
+        )}
 
     }
 }
