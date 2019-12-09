@@ -10,7 +10,7 @@ class Pet(models.Model):
     chip = models.BooleanField(default=False)
     encontrado = models.BooleanField(default=False)
     fecha_desaparecido = models.DateField(blank=True, null=True)
-    descripcion = models.TextField(blank = True, null = True )
+    descripcion = models.TextField(blank = True, null = True)
 
     def __str__(self):
         return self.nombre

@@ -1,29 +1,56 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
+import './display.css'
 export default class Display extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {'petNames': []};
-    }
 
     componentDidMount(){
         axios.get('http://localhost:8000/api/pets/')
             .then( e => {
-                    this.setState(e.data)
-                    for (let key in e.data){
-                        this.setState({'petNames': [...this.state.petNames, e.data[key]['nombre']]})                 
-                    }
+                    this.setState({'data': e.data})
+                    console.log(this.state)
+
             })
     }
 
+
+
+
     render() {
-        return (
-            <div>
-                {this.state.petNames.map(listitem => (
-                    <li className="list-group-item list-group-item-primary">{listitem}</li>
-                ))}
-            </div>
-        )
+        if (this.state){
+            return (
+                <div className='card-container'>
+                    <div className='card'>
+                        <div className='card-title'>
+                            <h3>{this.state.data[0].nombre}</h3>
+                        </div>
+                        <div className='left-info'>
+                            <ul>
+                                <li>
+                                    Chip: {this.state.data[0].chip?'Sí':'No'}
+                                </li>
+                                <li>
+                                    Negro
+                                </li>
+                            </ul>
+                        </div>
+                        <div className='right-info'>
+                            <ul>
+                                <li>
+                                    Desparacitado
+                                </li>
+                                <li>
+                                    Negro
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                                
+            )
+        }
+        return (<div></div>)
+
     }
 }
+
+
